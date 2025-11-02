@@ -21,6 +21,7 @@ La triangulation est une opération qui consiste à calculer des triangles à pa
 d'un ensemble de points. Si vous voulez en savoir plus, vous pouvez aller lire
 [Wikipédia](https://fr.wikipedia.org/wiki/Triangulation_d%27un_ensemble_de_points),
 ou demander à un LLM de vous expliquer.
+
 ![Triangulation donnant une forme semblable à une coquille d'escargot](triangulation.png)
 
 ### Architecture générale
@@ -54,7 +55,7 @@ Le `PointSetManager` se concentre sur la gestion des ensembles de points, il per
 - la récupération d'ensembles de points existants
 
 Ces fonctionnalités sont accessibles au travers d'une API HTTP qui est décrite
-dans sa spécification OpenAPI `point_set_manager.yml`.
+dans sa spécification OpenAPI [point_set_manager.yml](point_set_manager.yml).
 
 #### Database
 
@@ -69,7 +70,7 @@ Comme il ne stocke aucune données lui-même, il doit récupérer les ensembles
 de points auprès du `PointSetManager` pour pouvoir réaliser les calculs.
 
 Cette fonctionnalité est également accessible au travers d'une API HTTP,
-décrite dans sa spécification OpenAPI `triangulator.yml`.
+décrite dans sa spécification OpenAPI [triangulator.yml](triangulator.yml).
 
 #### Client
 
