@@ -28,7 +28,7 @@ class PointSet:
         # TODO
         return False
     
-    def addPoint(self, point: Point) -> None:
+    def add_point(self, point: Point) -> None:
         self.points.append(point)
 
     def to_bytes(self) -> str:

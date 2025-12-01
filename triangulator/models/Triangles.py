@@ -1,13 +1,18 @@
+from pointset_manager.models.PointSet import PointSet
+
 class Triangle:
-    def __init__(self, list_of_point_index: tuple):
-        self.list_of_point_index: tuple = list_of_point_index
+    def __init__(self, indices: tuple):
+        self.indices: tuple = indices
+    
+    def __eq__(self, value):
+        return False
     
     def to_bytes(self) -> str:
         # TODO
         return ''
     
     @staticmethod
-    def from_bytes(source: str) -> Triangle:
+    def from_bytes(source: str, pointset: PointSet) -> Triangle:
         # TODO
         return None
 
@@ -23,7 +28,7 @@ class Triangles:
         # TODO
         return False
     
-    def addTriangles(self, triangle: Triangle) -> None:
+    def add_triangles(self, triangle: Triangle) -> None:
         self.triangles.append(triangle)
 
     def to_bytes(self) -> str:
