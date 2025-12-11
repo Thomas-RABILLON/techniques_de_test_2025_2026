@@ -1,0 +1,2 @@
+FLASK_APP=client.app
+FLASK_RUN_PORT=5000

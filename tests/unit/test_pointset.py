@@ -1,4 +1,5 @@
 import pytest
+import struct
 
 from pointset_manager.models.PointSet import PointSet, Point
 
@@ -13,11 +14,11 @@ class TestPointSet:
     def test_add_point_invalid(self):
         ps = PointSet([])
         
-        with pytest.raises(ValueError):
-            ps.add_point(Point(None, 1.0))
+        with pytest.raises(TypeError):
+            ps.add_point("pas un point")
         
-        with pytest.raises(ValueError):
-            ps.add_point(Point(float("nan"), 1.0))
+        with pytest.raises(TypeError):
+            ps.add_point((1.0, 1.0))
 
     def test_pointset_to_bytes_and_from_bytes(self):
         points = [Point(0.0, 0.0), Point(1.0, 1.0)]
@@ -33,3 +34,22 @@ class TestPointSet:
     def test_pointset_from_bytes_invalid(self):
         with pytest.raises(ValueError):
             PointSet.from_bytes(b"\x00\x00\x00")
+        
+        with pytest.raises(TypeError):
+            PointSet.from_bytes(None)
+
+        with pytest.raises(TypeError):
+            PointSet.from_bytes("pas des bytes")
+        
+        with pytest.raises(ValueError):
+            PointSet.from_bytes(b"")
+        
+        with pytest.raises(ValueError):
+            b = struct.pack("<L", 2) + struct.pack("<ff", 1.0, 2.0)
+            PointSet.from_bytes(b)
+    
+    def test_empty_pointset_to_bytes(self):
+        ps = PointSet([])
+
+        with pytest.raises(ValueError):
+            ps.to_bytes()
