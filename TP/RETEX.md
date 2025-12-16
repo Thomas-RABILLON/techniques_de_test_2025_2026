@@ -24,7 +24,7 @@ J’ai choisi de ne pas mocker l’API, estimant que cela prendrait trop de temp
 
 Les tests de performance ont été, pour moi, les plus difficiles. L’implémentation des tests en soi n’était pas problématique, mais l’estimation d’un temps “type” pour l’exécution de l’algorithme l’était. Mes prévisions initiales étaient trop optimistes, notamment pour le test avec 10 000 points, probablement parce que mon algorithme de triangulation n’est pas ultra-optimisé. J’ai donc ajusté à la hausse le temps attendu pour ce test.
 
-Pour les tests sur de plus petits ensembles de points, j’ai fait tourner l’algorithme plusieurs fois avec des points différents et aléatoires, et calculé la moyenne des temps d’exécution. Le test avec 10 000 points n’a été exécuté qu’une seule fois, car il prenait trop de temps.
+Pour les tests sur de plus petits ensembles de points, j’ai fait tourner l’algorithme plusieurs fois avec des points différents et aléatoires, et calculé la moyenne des temps d’exécution. Le test avec 10 000 points n'est exécuté qu’une seule fois, car il prend trop de temps.
 
 ## Qualité du code
 
