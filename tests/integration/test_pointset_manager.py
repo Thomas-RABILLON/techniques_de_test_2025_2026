@@ -1,33 +1,54 @@
+"""Module de tests d'intégration pour PointSetManager."""
+
 import pytest
 
 from client.app import create_app
-from pointset_manager.models.PointSet import PointSet, Point
+from pointset_manager.models.PointSet import Point, PointSet
+
 
 class TestPointSetManager:
+    """Classe de tests d'intégration pour PointSetManager."""
+    
     @pytest.fixture
     def serveur(self):
+        """Fixture pour le client de test de l'application."""
         app = create_app()
         with app.test_client() as c:
             yield c
 
     def test_create_pointset_success(self, serveur):
+        """Teste la création réussie d'un pointset."""
         pointset = PointSet([Point(0.0, 0.0), Point(1.0, 1.0)])
         
-        rep = serveur.post("/pointset", data=pointset.to_bytes(), content_type="application/octet-stream")
+        rep = serveur.post(
+            "/pointset", 
+            data=pointset.to_bytes(), 
+            content_type="application/octet-stream"
+        )
         assert rep.status_code == 201
         
         data = rep.get_json()
         assert "PointSetID" in data
 
     def test_create_pointset_invalid_bytes(self, serveur):
-        rep = serveur.post("/pointset", data=b"\x00\x01", content_type="application/octet-stream")
+        """Teste la création d'un pointset avec des bytes invalides."""
+        rep = serveur.post(
+            "/pointset", 
+            data=b"\x00\x01", 
+            content_type="application/octet-stream"
+        )
         assert rep.status_code == 400
 
     def test_get_pointset_success(self, serveur):
+        """Teste la récupération réussie d'un pointset."""
         pointset = PointSet([Point(0.0, 0.0), Point(1.0, 1.0)])
         b = pointset.to_bytes()
 
-        rep_create = serveur.post("/pointset", data=b, content_type="application/octet-stream")
+        rep_create = serveur.post(
+            "/pointset", 
+            data=b, 
+            content_type="application/octet-stream"
+        )
         pointset_id = rep_create.get_json()["PointSetID"]
 
         rep_get = serveur.get(f"/pointset/{pointset_id}")
@@ -35,5 +56,9 @@ class TestPointSetManager:
         assert rep_get.data == b
 
     def test_get_pointset_not_found(self, serveur):
+        """Teste la récupération d'un pointset inexistant."""
         rep = serveur.get("/pointset/invalidId")
+        assert rep.status_code == 400
+
+        rep = serveur.get("/pointset/1234567890")
         assert rep.status_code == 404

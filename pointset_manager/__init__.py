@@ -1,0 +1,1 @@
+"""Package pointset_manager pour la gestion des ensembles de points 2D."""

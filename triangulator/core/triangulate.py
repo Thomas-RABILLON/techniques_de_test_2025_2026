@@ -1,13 +1,28 @@
+"""Module contenant la classe Triangulator."""
+
+from pointset_manager.models.PointSet import PointSet
 from triangulator.models.Triangle import Triangle
 from triangulator.models.Triangles import Triangles
-from pointset_manager.models.PointSet import PointSet
-from pointset_manager.models.Point import Point
-from typing import List, Tuple
+
 
 class Triangulator:
+    """Classe Triangulator."""
+    
     @staticmethod
     def triangulate(pointset: PointSet) -> Triangles:
-        """Triangulate a PointSet using Delaunay algorithm"""
+        """Permet de calculer la triangulation en utilisant l'algorithme de Delaunay.
+
+        Args:
+            pointset (PointSet): Le pointset à trianguler.
+
+        Raises:
+            ValueError: Si le pointset contient moins de 3 points.
+            ValueError: Si les points sont colinéaires.
+
+        Returns:
+            Triangles: La triangulation du pointset.
+
+        """
         if len(pointset) < 3:
             raise ValueError
         
@@ -21,8 +36,9 @@ class Triangulator:
         
         return Triangles(triangles, pointset)
 
+
     @staticmethod
-    def _are_points_collinear(points: List[Tuple[float, float]]) -> bool:
+    def _are_points_collinear(points: list[tuple[float, float]]) -> bool:
         if len(points) < 3:
             return True
         (x1, y1), (x2, y2), (x3, y3) = points[0], points[1], points[2]
@@ -36,14 +52,12 @@ class Triangulator:
         return True
 
     @staticmethod
-    def _delaunay_triangulation(points: List[Tuple[float, float]]) -> List[List[int]]:
-        """Delaunay triangulation using Bowyer-Watson algorithm"""
+    def _delaunay_triangulation(points: list[tuple[float, float]]) -> list[list[int]]:
         if len(points) < 3:
             return []
         if len(points) == 3:
             return [[0, 1, 2]]
 
-        # Super-triangle
         super_triangle = Triangulator._create_super_triangle(points)
         extended_points = points + super_triangle
         triangles = [(len(points), len(points)+1, len(points)+2)]
@@ -76,7 +90,8 @@ class Triangulator:
         return final_triangles
 
     @staticmethod
-    def _create_super_triangle(points: List[Tuple[float, float]]) -> List[Tuple[float, float]]:
+    def _create_super_triangle(
+            points: list[tuple[float, float]]) -> list[tuple[float, float]]:
         min_x = min(p[0] for p in points)
         max_x = max(p[0] for p in points)
         min_y = min(p[1] for p in points)
@@ -93,8 +108,9 @@ class Triangulator:
         ]
 
     @staticmethod
-    def _point_in_circumcircle(point: Tuple[float, float], triangle: Tuple[int, int, int], 
-                               points: List[Tuple[float, float]]) -> bool:
+    def _point_in_circumcircle(
+            point: tuple[float, float], triangle: tuple[int, int, int], 
+            points: list[tuple[float, float]]) -> bool:
         p1 = points[triangle[0]]
         p2 = points[triangle[1]]
         p3 = points[triangle[2]]
@@ -107,8 +123,12 @@ class Triangulator:
         if abs(d) < 1e-12:
             return False
 
-        ux = ((ax**2 + ay**2)*(by - cy) + (bx**2 + by**2)*(cy - ay) + (cx**2 + cy**2)*(ay - by))/d
-        uy = ((ax**2 + ay**2)*(cx - bx) + (bx**2 + by**2)*(ax - cx) + (cx**2 + cy**2)*(bx - ax))/d
+        ux = ((ax**2 + ay**2) * (by - cy) +
+              (bx**2 + by**2) * (cy - ay) +
+              (cx**2 + cy**2) * (ay - by)) / d
+        uy = ((ax**2 + ay**2) * (cx - bx) +
+              (bx**2 + by**2) * (ax - cx) +
+              (cx**2 + cy**2) * (bx - ax)) / d
 
         r2 = (ax - ux)**2 + (ay - uy)**2
         dist2 = (px - ux)**2 + (py - uy)**2
@@ -116,11 +136,14 @@ class Triangulator:
         return dist2 <= r2 + 1e-12
 
     @staticmethod
-    def _triangle_edges(tri: Tuple[int, int, int]) -> List[Tuple[int, int]]:
+    def _triangle_edges(tri: tuple[int, int, int]) -> list[tuple[int, int]]:
         return [(tri[0], tri[1]), (tri[1], tri[2]), (tri[2], tri[0])]
 
     @staticmethod
-    def _edge_shared_by_triangles(edge: Tuple[int, int], triangles: List[Tuple[int, int, int]]) -> bool:
+    def _edge_shared_by_triangles(
+            edge: tuple[int, int],
+            triangles: list[tuple[int, int, int]]
+    ) -> bool:
         count = 0
         for tri in triangles:
             edges = Triangulator._triangle_edges(tri)

@@ -1,0 +1,1 @@
+"""Package client pour l'application Flask de gestion des PointSets."""
