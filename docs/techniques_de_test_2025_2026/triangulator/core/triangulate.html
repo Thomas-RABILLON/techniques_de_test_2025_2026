@@ -124,14 +124,11 @@ el.replaceWith(d);
                     if not Triangulator._edge_shared_by_triangles(edge, bad_triangles):
                         polygon.append(edge)
 
-            # Supprimer triangles mauvais
             triangles = [t for t in triangles if t not in bad_triangles]
 
-            # Ajouter triangles avec le point courant
             for edge in polygon:
                 triangles.append((edge[0], edge[1], i))
 
-        # Supprimer triangles contenant les sommets du super-triangle
         final_triangles = []
         for tri in triangles:
             if all(v &lt; len(points) for v in tri):

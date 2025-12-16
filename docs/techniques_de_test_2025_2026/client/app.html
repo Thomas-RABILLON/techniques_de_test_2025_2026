@@ -171,7 +171,6 @@ def get_triangulation(pointset_id):
                ou message d&#39;erreur et statut approprié.
     
     &#34;&#34;&#34;
-    # Utiliser l&#39;endpoint /pointset/{pointset_id} pour récupérer le PointSet
     with app.test_client() as client:
         response = client.get(f&#34;/pointset/{pointset_id}&#34;)
         
