@@ -20,3 +20,9 @@ Utilisez la commande suivante à la racine du projet, après avoir téléchargé
 ```bash
 flask --app client.app run
 ```
+
+Je vous conseille de lancer les tests en mode no perf, car mon algorithme de triangulation n'est pas très optimisé et qu'un des tests prend beaucoup de temps (environ 3 min).
+
+```bash
+make unit_test
+```
