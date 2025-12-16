@@ -32,7 +32,7 @@ La qualité du code ne m’a pas posé de difficultés particulières, à part c
 
 Finalement, je n’ai plus d’erreurs `ruff` et j’ai atteint un coverage de 98 %. Ce score élevé est certainement dû à l’ajout de tests pendant l’implémentation, pour couvrir des cas que je n’avais pas initialement prévus. Malgré ce coverage très élevé, je ne pense pas avoir créé de tests inutiles.
 
-Pour ce qui est de la documentation, je n'ai pas eu de problème particulier, l'extension VSCode `autodocstring` m'a bien aidé à structurer mes docstrings.
+Pour ce qui est de la documentation, je n'ai pas eu de problème particulier, l'extension VSCode `autodocstring` m'a bien aidé à structurer mes docstrings. Vous pourrez la trouver dans le dossier `docs`.
 
 ## Ce que j’ai bien fait et ce que j’aurais pu améliorer
 
