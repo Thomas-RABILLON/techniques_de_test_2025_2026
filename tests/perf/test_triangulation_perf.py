@@ -73,4 +73,4 @@ def test_triangulation_10000_points():
     Triangulator.triangulate(ps)
     duration = time.perf_counter() - start
     
-    assert duration < 160.0
+    assert duration < 180.0

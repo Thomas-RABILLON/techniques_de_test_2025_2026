@@ -13,5 +13,10 @@ Groupe de TP : M1 ILSEN Alternant
 
 ## Remarques particulières
 
-Si vous avez des remarques particulières à faire sur le TP ou votre rendu vous
-pouvez les faire ici.
+Je n'ai pas mocker l'API, il faut donc lancer le serveur pour que les tests fonctionnent.
+
+Utilisez la commande suivante à la racine du projet, après avoir téléchargé les dépendances :
+
+```bash
+flask --app client.app run
+```
