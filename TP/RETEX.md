@@ -8,7 +8,7 @@ Pendant l’implémentation, je me suis rendu compte que je n’avais pas suffis
 
 * `ValueError` pour les problèmes de valeurs (par exemple, bytes trop courts)
 * `TypeError` pour les mauvais types de données (par exemple `None` ou `str` au lieu de `float`)
-* `IndexError` pour les `Triangle`, si des indices de point utilisés ne correspondent à aucun point existant dans le `PonitSet`
+* `IndexError` pour les `Triangle`, si des indices de point utilisés ne correspondent à aucun point existant dans le `PointSet`
 
 Chaque méthode possède maintenant des tests couvrant les erreurs possibles, en plus des tests vérifiant le bon fonctionnement normal.
 
