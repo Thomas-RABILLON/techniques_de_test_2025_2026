@@ -10,6 +10,6 @@ Une fois les tests unitaires en place, je n'ai pas eu de problème pour impléme
 
 La partie difficile a été de mettre en place les tests de performance, car l'algorithme de triangulation est assez complexe et il est difficile de définir un temps d'exécution. De plus, mon implémentation n'est pas très optimisée et elle met beaucoup plus de temps que ce que j'imaginais au début pour un grand nombre de points.
 
-Pour finir avec la qualité, je n'ai pas vraiment eu de problème avec ruff, bien que j'aie eu du mal à comprendre certaines erreurs. J'ai réussi à obtenir un coverage de 98 %, car en rajoutant des tests auxquels je n'avais pas pensé au cours du temps, j'ai pu tester quasiment tous les cas importants. Même si ce coverage est plutôt élevé, je ne pense pas avoir de tests « inutiles ».
+Pour finir avec la qualité, je n'ai pas vraiment eu de problème avec ruff, bien que j'aie eu du mal à comprendre certaines erreurs. J'ai réussi à obtenir un coverage de 98 %, car en rajoutant des tests auxquels je n'avais pas pensé au cours du temps, j'ai pu tester quasiment tous les cas importants. Même si ce coverage est plutôt élevé, je ne pense pas avoir de tests "inutiles".
 
 Pour conclure, ce TP m'a permis de vraiment comprendre les difficultés à mettre en place un TDD, mais aussi son importance, car j'ai remarqué que l'implémentation de la logique devenait beaucoup plus simple, puisque je l'avais déjà "structurée" grâce aux tests.
